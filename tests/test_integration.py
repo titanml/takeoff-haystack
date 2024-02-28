@@ -39,7 +39,7 @@ def test_takeoff_generator_generation_kwargs(generation_kwargs, takeoff_port):
     HaystackResponse(**result)
 
 
-def test_docs_example():
+def test_docs_example(takeoff_port):
     from haystack import Document, Pipeline
     from haystack.components.builders.prompt_builder import PromptBuilder
     from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
@@ -75,7 +75,7 @@ def test_docs_example():
 
     pipe.add_component("retriever", InMemoryBM25Retriever(document_store=document_store))
     pipe.add_component("prompt_builder", PromptBuilder(template=template))
-    pipe.add_component("llm", TakeoffGenerator(base_url="http://localhost", port=3000))
+    pipe.add_component("llm", TakeoffGenerator(base_url="http://localhost", port=int(takeoff_port)))
     pipe.connect("retriever", "prompt_builder.documents")
     pipe.connect("prompt_builder", "llm")
 
