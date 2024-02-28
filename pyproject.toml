@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "takeoff-haystack"
+version = "0.1.0"
+description = ""
+authors = ["Fergus Barratt <fergus.barratt00@gmail.com>"]
+readme = "README.md"
+packages = [{include = "takeoff_haystack"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+haystack-ai = "^2.0.0b6"
+takeoff-client = "^0.0.4"
+pydantic = "^2.5.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+takeoff-sdk = "^0.0.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

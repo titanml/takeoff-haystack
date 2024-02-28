@@ -1,0 +1,21 @@
+name: release
+
+on:
+  # Triggers the workflow on push but only for the main branch
+  push:
+    tags: [ "*" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      #-------------------------------------#
+      #  Check out repo and set up Python   #
+      #-------------------------------------#
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - uses: JRubics/poetry-publish@v2.0
+        with:
+            pypi_token: ${{ secrets.PYPI_TOKEN }}
+            plugins: "poetry-dynamic-versioning[plugin]"
